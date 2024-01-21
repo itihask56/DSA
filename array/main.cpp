@@ -7,6 +7,15 @@ using namespace std;
 // }
 
 //Swap alternate
+
+void swapNum(int n1,int n2){
+    int temp;
+    temp = n1;
+    n1=n2;
+    n2 = temp;
+    
+}
+
 void printArr(int arr[],int n){
    
     for(int i=0;i<n;i++){
@@ -18,7 +27,8 @@ void printArr(int arr[],int n){
 void swap_alternate_arr(int arr[],int size){
      for(int i=0;i<size;i+=2){
         if(i+1<size){
-            swap(arr[i],arr[i+1]);
+            // swap(arr[i],arr[i+1]); //we can use inbuilt swap function to swap number
+            swapNum(arr[i],arr[i+1]);  // we can also design our own swap funtion
         }
      }
 }
@@ -34,3 +44,5 @@ int main(int argc, char const *argv[])
     printArr(odd_arr,7);
     return 0;
 }
+
+
