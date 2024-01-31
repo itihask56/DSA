@@ -17,13 +17,17 @@ bool isSorted(int arr[],int size){
 }
 
 int main(){
-    int arr[5]={2,2,6,2,8};
+    int arr[5]={2,3,6,2,8};
     int size = sizeof(arr)/sizeof(arr[0]);
     
-    if(isSorted(arr,size)){
-        cout<<"Array is sorted"<<endl;
-    }
-    else{
-        cout<<"Not sorted"<<endl;
-    }
+    // if(isSorted(arr,size)){
+    //     cout<<"Array is sorted"<<endl;
+    // }
+    // else{
+    //     cout<<"Not sorted"<<endl;
+    // }
+
+    // cout<<arr<<endl;
+    // cout<<arr+1<<endl;
+    // cout<<*(arr+1)<<endl;
 }
