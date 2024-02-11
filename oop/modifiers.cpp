@@ -6,13 +6,13 @@ class Human{
 
     int height;
     int weight;
-    private:
+    // private:
     int age;
 
     public:
 
         void setWeight(int w){
-            return this->weight;
+            this->weight=w;
         }
         int getAge(){
             return this->age;
@@ -20,7 +20,7 @@ class Human{
 
 };
 
-class Male: public Human{
+class Male: protected Human{
         public:
         string color;
 
@@ -31,11 +31,34 @@ class Male: public Human{
             return this->height;
         }
 
-};x
+        int getHeight(){
+            return this->height;
+        }
+       
+
+};
 
 
 int main(){
     Male m1;
-    cout<<m1.age<<endl;
+    cout<<m1.getHeight()<<endl;
+
+     
+
+
+
+
+
+
+
+    // cout<<m1.age<<endl;
+    // cout<<m1.height<<endl;
+    // cout<<m1.weight<<endl;
+
+    // cout<<m1.color<<endl;
+    // m1.sleep();
+    // cout<<endl;
+    // m1.setWeight(54);
+    // cout<<m1.weight;
 
 }
