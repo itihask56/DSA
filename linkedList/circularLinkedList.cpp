@@ -97,29 +97,51 @@ void deleteNode(Node* &tail,int element){
     }
 }
 
+bool isCircular(Node* head){
+    //empty case
+    if(head==NULL){
+        return true;
+    }
+    Node* temp= head->next;
+    while(temp!=NULL &&  temp!=head){
+        temp=temp->next;
+    }
+    if(temp==head){
+        return true;
+    }
+    return false;
+
+}
+
 int main(){
     Node* tail = NULL;
-    //insert node in empty list
-    insertNode(tail,10,3);
-    print(tail);
-
-    insertNode(tail,3, 5);
-    print(tail);
-
-    insertNode(tail,5, 7);
-    print(tail);
-
-    // insertNode(tail,5, 10);
+    // //insert node in empty list
+    // insertNode(tail,10,3);
     // print(tail);
 
-    deleteNode(tail,3);
-    print(tail);
+    // insertNode(tail,3, 5);
+    // print(tail);
 
-    deleteNode(tail,7);
-    print(tail);
+    // insertNode(tail,5, 7);
+    // print(tail);
 
-    deleteNode(tail,5);
-    print(tail);
+    // // insertNode(tail,5, 10);
+    // // print(tail);
+
+    // deleteNode(tail,3);
+    // print(tail);
+
+    // deleteNode(tail,7);
+    // print(tail);
+
+    // deleteNode(tail,5);
+    // print(tail);
+    if(isCircular(tail)){
+        cout<<"Linked list is cirular in nature"<<endl;
+    }
+    else{
+        cout<<"Not a singly linked list"<<endl;
+    }
 
     return 0;
 }

@@ -1,4 +1,5 @@
 #include<iostream>
+#include<map>
 using namespace std;
 
 // class Node{
@@ -142,6 +143,9 @@ void insertAtBegning(Node* &tail,int d){
 }
 
 void print(Node *head){
+    if(head==NULL){
+        cout<<"Linked list is empty"<<endl;
+    }
     Node *ptr = head;
     while(ptr!=NULL){
         cout<<ptr->data<<" ";
@@ -230,8 +234,95 @@ void deleteNode(Node* &head,int pos){
     }
 }
 
+bool isCircular(Node* head){
+    //empty case
+    if(head==NULL){
+        return true;
+    }
+    Node* temp= head->link;
+    while(temp!=NULL &&  temp!=head){
+        temp=temp->link;
+    }
+    if(temp==head){
+        return true;
+    }
+    return false;
+
+}
+
+bool detectLoop(Node* head){
+    if(head==NULL){
+        return false;
+    }
+    map<Node*,bool>visited;
+    Node *temp = head;
+    while(temp!=NULL){
+        if(visited[temp]==true){
+            cout<<"Loop present element on "<<temp->data<<endl;
+            return true;
+        }
+        visited[temp]=true;
+        temp=temp->link;
+    }
+    return false;
+}
+
+Node* floyedDetectt(Node* head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node* fast = head;
+    Node* slow = head;
+
+    while(slow!=NULL && fast!=NULL){
+        fast=fast->link;
+        if(fast!=NULL){
+            fast=fast->link;
+        }
+        slow = slow->link;
+        if(slow == fast){
+            cout<<slow->data<<endl;
+            return slow;
+        }
+
+    }
+    return NULL;
+}
+
+Node* getFirstNodeOfLoop(Node* head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node* intersection = floyedDetectt(head);
+    Node* slow = head;
+    // Node* fast = intersection; 
+    while(slow!=intersection){
+        slow=slow->link;
+        intersection=intersection->link;
+    }
+    return slow;
+}
+
+void removeLoop(Node* head){
+    if(head==NULL){
+        return;
+
+    }
+    Node* startofLoop = getFirstNodeOfLoop(head);
+    Node* temp = startofLoop;
+    while(temp->link !=startofLoop){
+        temp=temp->link;
+    }
+    temp->link = NULL;
+    
+
+}
+
+
+
 int main(){
     Node *head = new Node(10);
+    // Node *head = NULL;
     Node *tail = head;
     // print(head);
     // cout<<head->data<<endl;
@@ -240,18 +331,45 @@ int main(){
     insertAtEnd(tail,30);
     insertAtEnd(tail,40);
     print(head);
+    tail->link = head->link;
+    // if(detectLoop(head)){
+    //     cout<<"Loop present"<<endl;
+    // }
+    // else{
+    //     cout<<"Not present"<<endl;
+    // }
+
+    if(floyedDetectt(head) !=NULL ){
+        cout<<"Loop present at some point"<<endl;
+    }
+    else{
+        cout<<"Not present"<<endl;
+    }
+    Node* loop = getFirstNodeOfLoop(head);
+
+    cout<<"\nLoop Start at:"<<loop->data<<endl;
+
+    removeLoop(head);
+    print(head);
+    // print(head);
     // insertAtBegning(tail,20);
     // insertAtBegning(tail,30);
     // print(tail);
-    insertAtPositon(head,50,5);
-    print(head);
+    // insertAtPositon(head,50,5);
+    // print(head);
     // deleteFirstNode(head);
     // print(head);
     // deleteLastNode(head);
     // print(head);
 
-    deleteNode(head,3);
-    print(head);
+    // deleteNode(head,3);
+    // print(head);
+    // if(isCircular(head)){
+    //     cout<<"Circula linked list"<<endl;
+    // }
+    // else{
+    //     cout<<"Not a circular linked list"<<endl;
+    // }
 }
 
 
