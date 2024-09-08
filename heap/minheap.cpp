@@ -92,7 +92,6 @@ int main(){
     H1.insert(30);// 
     H1.insert(32);// 
     H1.insert(5);// 
-    H1.print();// 
 
     H1.Delete();
     H1.print();
