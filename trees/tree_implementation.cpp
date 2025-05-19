@@ -38,5 +38,6 @@ int main(){
             temp->right=new Node(second);
             q.push(temp->right);
         }
+        
     }
 }
