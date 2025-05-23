@@ -40,6 +40,7 @@ void postorder(Node *root){
     postorder(root->right);
     cout<<root->data<<" ";
 }
+
 int main(){
     int x,first,second;
     cout<<"Enter root Node:";
